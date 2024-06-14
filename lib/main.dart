@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // Import for Clipboard
 import 'package:http/http.dart' as http;
+import 'package:share_plus/share_plus.dart'; // Import for Share
 
 void main() {
   runApp(const RandomQuoteApp());
@@ -72,6 +73,11 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
     );
   }
 
+  // Function to share quote
+  void _shareQuote() {
+    Share.share(_quote);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,29 +112,33 @@ class _RandomQuoteScreenState extends State<RandomQuoteScreen> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          _quote,
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                            fontStyle: FontStyle.italic,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.copy),
-                        color: Colors.white,
-                        onPressed: _copyToClipboard,
-                      ),
-                    ],
+                  child: Text(
+                    _quote,
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(height: 100),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.copy),
+                      color: Colors.white,
+                      onPressed: _copyToClipboard,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.share),
+                      color: Colors.white,
+                      onPressed: _shareQuote,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: _getRandomQuote,
                   style: ElevatedButton.styleFrom(
