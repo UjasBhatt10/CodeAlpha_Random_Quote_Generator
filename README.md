@@ -13,6 +13,6 @@ A Flutter application that fetches random quotes from an API and allows users to
 
 | Home Screen | Share Quote |
 |:-----------:|:------------------:|
-|![Screenshot 1](Screenshots/1.png)|![Screenshot 1](Screenshots/2.png)|
+|![Screenshot 1](Screenshots/2.png)|![Screenshot 1](Screenshots/1.png)|
 
 
